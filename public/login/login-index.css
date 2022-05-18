@@ -28,17 +28,15 @@ section {
     flex-direction: column;
 }
 
-#login {
-    font-size: 18px;
-    height: 42px;
-    width: 500px;
-}
-
-
-
 #input {
     position: absolute;
     top: 650px;
+}
+
+#inputBox {
+    font-size: 18px;
+    height: 42px;
+    width: 500px;
 }
 
 button {
@@ -48,7 +46,7 @@ button {
 
 .login {
     position: absolute;
-    top: 775px;
+    bottom: 675px;
     left: 675px;
     width: 75px;
 }
