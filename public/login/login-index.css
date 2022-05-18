@@ -1,0 +1,73 @@
+body {
+background-color: #3c3c3c;
+}
+
+.parent {
+    display: grid;
+    place-items: center;
+}
+
+.child {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+h1 {
+    color: white;
+    font-weight: lighter;
+    font-family: 'inter';
+    font-size: 100px;
+    word-wrap: break-word;
+    text-align: center;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+}
+
+#login {
+    font-size: 18px;
+    height: 42px;
+    width: 500px;
+}
+
+
+
+#input {
+    position: absolute;
+    top: 650px;
+}
+
+button {
+    font-size: 18px;
+    height: 30px;
+}
+
+.login {
+    position: absolute;
+    top: 775px;
+    left: 675px;
+    width: 75px;
+}
+
+.sign-up {
+    width: 100px;
+}
+p {
+    font-family: 'inter';
+    color: white;
+    padding: 5px;
+    font-size: 24px;
+}
+
+#accountSignUp {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    bottom: 50px;
+    right: 50px;
+    
+}
