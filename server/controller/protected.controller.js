@@ -11,8 +11,7 @@ async function getList(req, res) {
   
       res.status(200).send(result);
     } catch (error) {
-      const user = req.session.user; // This information is here because I added to the session in my auth.controller.js
-  
+      const user = req.session.user; 
       rollbar.error(error, {
         user: user,
       });
@@ -20,6 +19,8 @@ async function getList(req, res) {
       res.sendStatus(500);
     }
   }
+
+
 
 module.exports = {
     getList,
