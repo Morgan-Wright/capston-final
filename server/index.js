@@ -9,7 +9,7 @@ const session = require('express-session');
 
 const { createDatabase } = require('./controller/seed.controller')
 const { authRouter } = require('./router/auth.router')
-const { getListRouter } = require('./routers/lists.router');
+const { ListsRouter } = require('./router/lists.router');
 
 app.use(
   session({
@@ -24,7 +24,7 @@ app.use(
 );
 
 app.use(express.json());
-// app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 
 app.post('/seed', createDatabase);
 app.use('/auth', authRouter);

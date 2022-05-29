@@ -20,8 +20,16 @@ async function getList(req, res) {
     }
   }
 
+async function AddListItem (req, res) {
+  const { title, body } = req.body;
+  const userID = req.session.user.id;
 
+  
+
+  
+}
 
 module.exports = {
     getList,
+    AddListItem,
 }

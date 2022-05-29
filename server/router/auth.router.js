@@ -5,7 +5,7 @@ const {
   handleLogout,
 } = require("../controller/auth.controller");
 
-const authRouter = express.router();
+const authRouter = express.Router();
 
 authRouter.post("/sign-up", handleSignUp);
 authRouter.post("/login", handleLogin);
