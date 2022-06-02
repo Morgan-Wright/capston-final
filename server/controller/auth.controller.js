@@ -46,7 +46,7 @@ async function handleLogin(req, res) {
     return res.sendStatus(400);
   }
 
-  const doesPasswordMatch = bcrypt.compareSync(password, existingRecord.hash);
+  const doesPasswordMatch = bcryptjs.compareSync(password, existingRecord.hash);
 
   if (!doesPasswordMatch) {
     return res.sendStatus(400);
@@ -56,7 +56,7 @@ async function handleLogin(req, res) {
     ...existingRecord,
   };
 
-  res.redirect("/characters");
+  res.redirect("/protected");
 }
 
 function handleLogout(req, res) {

@@ -1,6 +1,6 @@
 require('dotenv').config({path: '../.env'});
 
-const {PORT, NODE_ENV} = process.env;
+const {PORT, NODE_ENV, SESSION_SECRET} = process.env;
 
 const path = require('path');
 const express = require('express');
@@ -9,7 +9,7 @@ const session = require('express-session');
 
 const { createDatabase } = require('./controller/seed.controller')
 const { authRouter } = require('./router/auth.router')
-const { ListsRouter } = require('./router/lists.router');
+const { listsRouter } = require('./router/protected.router');
 
 app.use(
   session({
@@ -28,7 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.post('/seed', createDatabase);
 app.use('/auth', authRouter);
-app.use('/lists', listsRouter);
+app.use('/protected', listsRouter);
 
 const publicDir = path.join(__dirname, '../client/public/');
 const protectedDir = path.join(__dirname, '../client/protected');
@@ -49,8 +49,8 @@ app.use(
   );
 
 // app.post('/seed', createDatabase);
-// app.post('/auth/sign-up', handleSignUp);
-// app.post('/auth/login', handleLogin);
+// app.post('/sign-up', handleSignUp);
+// app.post('/login', handleLogin);
 // app.get('/login', (req, res) =>{})
 
 app.listen(PORT, () => {
