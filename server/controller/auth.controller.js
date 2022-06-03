@@ -9,11 +9,10 @@ async function getUsername(username) {
     if (existingRecord.length) {
       return existingRecord[0];
     }
-  
+
     return null;
-    
   } catch (error) {
-  console.log(error)    
+    console.log(error);
   }
 }
 
@@ -23,7 +22,7 @@ async function handleSignUp(req, res) {
   const existingRecord = await getUsername(username);
 
   if (existingRecord) {
-    return res.status(400).send('user already exists');
+    return res.status(400).send("user already exists");
   }
 
   const hash = bcryptjs.hashSync(password, 10);
@@ -38,7 +37,7 @@ async function handleSignUp(req, res) {
     ...newRecord,
   };
 
-  res.status(200).send('sign up successful');
+  res.status(200).send("sign up successful");
 }
 
 async function handleLogin(req, res) {
@@ -47,13 +46,13 @@ async function handleLogin(req, res) {
   const existingRecord = await getUsername(username);
 
   if (!existingRecord) {
-    return res.status(400).send('user does not exist');
+    return res.status(400).send("user does not exist");
   }
 
   const doesPasswordMatch = bcryptjs.compareSync(password, existingRecord.hash);
 
   if (!doesPasswordMatch) {
-    return res.status(400).send('Passwords do not match');
+    return res.status(400).send("Passwords do not match");
   }
 
   req.session.user = {
@@ -66,7 +65,7 @@ async function handleLogin(req, res) {
 function handleLogout(req, res) {
   req.session.destroy();
 
-  res.status(200).send('logout successful');
+  res.status(200).send("logout successful");
 }
 
 module.exports = {

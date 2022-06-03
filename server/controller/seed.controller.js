@@ -1,8 +1,8 @@
-const sequelize = require('../utils/db')
+const sequelize = require("../utils/db");
 
 async function createDatabase(req, res) {
-    try {
-      await sequelize.query(`
+  try {
+    await sequelize.query(`
       drop table if exists lists_item;
       drop table if exists users;
       
@@ -18,15 +18,15 @@ async function createDatabase(req, res) {
           user_id int references users(id)
       );
     `);
-  
-      res.sendStatus(200);
-    } catch (error) {
-      console.log(error);
-  
-      res.sendStatus(500);
-    }
+
+    res.sendStatus(200);
+  } catch (error) {
+    console.log(error);
+
+    res.sendStatus(500);
   }
-  
-  module.exports = {
-    createDatabase,
-  };
+}
+
+module.exports = {
+  createDatabase,
+};
