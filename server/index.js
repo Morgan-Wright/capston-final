@@ -28,7 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.post('/seed', createDatabase);
 app.use('/auth', authRouter);
-app.use('/protected', listsRouter);
+app.use('/lists', listsRouter);
 
 const publicDir = path.join(__dirname, '../client/public/');
 const protectedDir = path.join(__dirname, '../client/protected');
@@ -46,12 +46,7 @@ app.use(
     }
   },
   express.static(protectedDir)
-  );
-
-// app.post('/seed', createDatabase);
-// app.post('/sign-up', handleSignUp);
-// app.post('/login', handleLogin);
-// app.get('/login', (req, res) =>{})
+);
 
 app.listen(PORT, () => {
     if (NODE_ENV === 'development') {

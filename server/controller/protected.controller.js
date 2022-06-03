@@ -3,14 +3,15 @@ const sequelize = require("../utils/db");
 
 async function getList(req, res) {
   const userId = req.session.user.id;
-
+  console.log(userId)
   try {
     const [result] = await sequelize.query(`
-        select * from lists where user_id = ${userId}
+        select * from lists_item where user_id = ${userId}
       `);
-
+    console.log(result)
     res.status(200).send(result);
   } catch (error) {
+    console.log(error)
     const user = req.session.user;
     rollbar.error(error, {
       user: user,
@@ -21,20 +22,18 @@ async function getList(req, res) {
 }
 
 async function addListItem(req, res) {
-  const { title, body, _method, id } = req.body;
-  const userId = req.session.user.id;
-
-  if (_method === "post") {
-    await sequelize.query(`
-    insert into lists_item (title, body, user_id) values (${title}, ${body}, ${userId} )
-    `);
-  } else if (_method === "patch") {
-    await sequelize.query(`
-    update lists_item set title = ${title}, body = ${body}, where id = ${id}
-    `);
+  try {
+    const { content } = req.body;
+    const userId = req.session.user.id;
+  
+    const dbResult = await sequelize.query(`
+      insert into lists_item (content, user_id) values ('${content}', ${userId} )
+      `);
+    
+    res.redirect("/protected");
+  } catch (error) {
+    console.log(error)
   }
-
-  res.redirect("/protected");
 }
 
 module.exports = {

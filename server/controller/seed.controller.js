@@ -3,8 +3,8 @@ const sequelize = require('../utils/db')
 async function createDatabase(req, res) {
     try {
       await sequelize.query(`
+      drop table if exists lists_item;
       drop table if exists users;
-      drop table if exists lists;
       
       create table users (
         id serial primary key,
@@ -12,16 +12,10 @@ async function createDatabase(req, res) {
         hash text
       );
 
-      create table lists (
-        id serial primary key,
-        content text,
-        user_id int references users(id)
-      );
-
-      create table lists_item (
+        create table lists_item (
           id serial primary key,
           content text,
-          lists_id int references lists(id)
+          user_id int references users(id)
       );
     `);
   
